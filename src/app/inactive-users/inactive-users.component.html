@@ -1,0 +1,9 @@
+
+<div class="container">
+  <h3>In-Active Users</h3>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let user of users;let i = index">
+      {{user!==undefined?user.name:''}} | <a href="#" (click)="activateUser(i)">Activate User</a>
+    </li>
+  </ul>
+</div>

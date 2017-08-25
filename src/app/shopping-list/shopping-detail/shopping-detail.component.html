@@ -1,0 +1,24 @@
+
+<div class="row">
+  <div class="col-xs-12">
+    <form>
+      <div class="row">
+        <div class="col-sm-5 form-group">          
+          <label for="item">Item</label>
+          <input id="item" type="input" class="form-control" #itemName />
+        </div>
+        <div class="col-sm-2 form-group">    
+          <label for="item">Amount</label>
+          <input id="item" type="input" class="form-control" #itemAmount />
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-success" (click)="AddItem()">Add</button>
+            <button class="btn btn-danger" (click)="DeleteItem()">Delete</button>
+            <button class="btn btn-primary" (click)="ClearItem()">Clear</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

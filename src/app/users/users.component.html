@@ -1,0 +1,16 @@
+ <h2>This is Users Page</h2>
+   <div class="row">
+    <div class="col-xs-2 nav-bar-left">
+      <ul class="list-group">
+        <li class="list-group-item cursor-pointer" (click)="showUser(user.id,user.name)" *ngFor="let user of users">
+          {{user.name}}
+          </li>
+      </ul>
+    </div>
+   <router-outlet></router-outlet>
+  </div>
+  <hr>
+<p>
+  <button class="btn btn-primary" routerLink="/">Home</button>
+  <button class="btn btn-danger" routerLink="/servers">Servers</button>
+</p>

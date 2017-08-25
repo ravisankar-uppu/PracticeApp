@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-xs-4 nav-bar-right">
+    <div class="form-group">
+      <div class="row">
+          <label class="form-label">Id</label>
+          <input id="id" value="{{user.id}}" class="form-control" #id/>
+      </div>
+      <div class="row">
+          <label class="form-label">Name</label>
+          <input id="name" value="{{user.name}}" class="form-control" #name/>
+      </div>
+    </div>
+    <button class="btn btn-primary" (click)="UpdateUser()">Update User</button>
+  </div>
+</div>

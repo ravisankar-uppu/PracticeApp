@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-xs-10">
+    <app-shopping-detail></app-shopping-detail>
+    <hr>
+    <ul class="list-group">
+      <a class="list-group-item" *ngFor="let shoppingListItem of shoppingListItems">
+        <span>{{shoppingListItem.Name}} ({{shoppingListItem.Amount}})</span>
+      </a>   
+    </ul>
+  </div>
+</div>
