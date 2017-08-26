@@ -2,14 +2,17 @@ import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import {Router,ActivatedRoute,Params} from '@angular/router';
 import {User} from '../../models/user-model';
 import {UserService} from '../../services/user-service';
+import {CanComponentDeactivate} from '../../can-deactivate-guard.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.css']
 })
-export class UserEditComponent implements OnInit {
+export class UserEditComponent implements OnInit,CanComponentDeactivate {
   id:number=0;
+  saved:boolean=false;
   user:User;
   @ViewChild('id') userId:ElementRef;
   @ViewChild('name') userName:ElementRef;
@@ -26,7 +29,16 @@ export class UserEditComponent implements OnInit {
     this.user.id=this.userId.nativeElement.value;
     this.user.name=this.userName.nativeElement.value;
     this.userService.updateUser(this.user);
+    this.saved=true;
     this.router.navigate(['/users',this.user.id,this.user.name]);
+  }
+
+  canDeactivate():Observable<boolean> | Promise<boolean> | boolean{
+    if(!this.saved){
+      return confirm('Are you sure you want to leave this page ?');
+    }
+    else
+      return true;
   }
 
 }

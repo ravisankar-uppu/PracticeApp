@@ -13,6 +13,7 @@ import { UserComponent } from './users/user/user.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserService } from './services/user-service';
 import { NoComponentComponent } from './no-component/no-component.component';
+import {CanDeactivateGuard} from './can-deactivate-guard.service';
 
 const appRoutes:Routes=[
   {path:'recipes',component:RecipesComponent},
@@ -21,7 +22,7 @@ const appRoutes:Routes=[
   {path:'servers',component:ServersComponent},  
   {path:'users',component:UsersComponent,children:[
     {path:':id/:name',component:UserComponent},
-    {path:':id',component:UserEditComponent}
+    {path:':id',component:UserEditComponent,canDeactivate:[CanDeactivateGuard]}
   ]},
   {path:'no-component',component:NoComponentComponent},
   {path:'**',redirectTo:'/no-component'}

@@ -27,7 +27,8 @@ import { UserComponent } from './users/user/user.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserService } from './services/user-service';
 import { NoComponentComponent } from './no-component/no-component.component';
-import {AppRoutingModule} from './app.routing.module'
+import {AppRoutingModule} from './app.routing.module';
+import {CanDeactivateGuard} from './can-deactivate-guard.service';
 
 
 
@@ -59,7 +60,7 @@ import {AppRoutingModule} from './app.routing.module'
     HttpModule,
     AppRoutingModule
   ],
-  providers: [CounterService,ShoppingListService,UserService],
+  providers: [CounterService,ShoppingListService,UserService,CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
