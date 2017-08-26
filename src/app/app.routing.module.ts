@@ -14,13 +14,17 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserService } from './services/user-service';
 import { NoComponentComponent } from './no-component/no-component.component';
 import {CanDeactivateGuard} from './can-deactivate-guard.service';
+import {AuthGuardService} from './auth-guard.service';
 
 const appRoutes:Routes=[
   {path:'recipes',component:RecipesComponent},
   {path:'shopping-list',component:ShoppingListComponent},
   {path:'',component:HomeComponent},
   {path:'servers',component:ServersComponent},  
-  {path:'users',component:UsersComponent,children:[
+  {path:'users',component:UsersComponent,
+  //canActivate:[AuthGuardService],
+  canActivateChild:[AuthGuardService],
+  children:[
     {path:':id/:name',component:UserComponent},
     {path:':id',component:UserEditComponent,canDeactivate:[CanDeactivateGuard]}
   ]},

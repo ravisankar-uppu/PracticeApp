@@ -29,6 +29,8 @@ import { UserService } from './services/user-service';
 import { NoComponentComponent } from './no-component/no-component.component';
 import {AppRoutingModule} from './app.routing.module';
 import {CanDeactivateGuard} from './can-deactivate-guard.service';
+import {AuthGuardService} from './auth-guard.service';
+import {AuthService} from './auth.service';
 
 
 
@@ -60,7 +62,7 @@ import {CanDeactivateGuard} from './can-deactivate-guard.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [CounterService,ShoppingListService,UserService,CanDeactivateGuard],
+  providers: [CounterService,ShoppingListService,UserService,CanDeactivateGuard,AuthGuardService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
