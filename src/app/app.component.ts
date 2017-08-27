@@ -8,16 +8,6 @@ import {ActivateInactivateUser} from './services/active-inactive-service';
   providers:[ActivateInactivateUser]
 })
 export class AppComponent {
-  pageToShow:string='';
-
   constructor(){
-  }
-
-  listenToCounter(counter){
-
-  }
-  
-  showPage(page){
-    this.pageToShow=page;
   }
 }

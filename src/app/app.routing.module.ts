@@ -17,11 +17,22 @@ import {CanDeactivateGuard} from './can-deactivate-guard.service';
 import {AuthGuardService} from './auth-guard.service';
 import {ErrorPageComponent} from './error-page/error-page.component';
 import {UserResolver} from './users/user-resolver.service';
+import {RecipeResolver} from './recipes/recipe-resolver.service';
+import {RecipeStartComponent} from './recipes/recipe-start/recipe-start.component';
 
 const appRoutes:Routes=[
-  {path:'recipes',component:RecipesComponent},
+  {path:'recipes',component:RecipesComponent,
+  children:[
+    {path:'',component:RecipeStartComponent},
+    {
+      path:':id',
+      component:RecipeDetailComponent
+      //resolve:{recipe:RecipeResolver}
+    }
+  ]
+},
   {path:'shopping-list',component:ShoppingListComponent},
-  {path:'',component:HomeComponent},
+  {path:'',component:RecipesComponent},
   {path:'servers',component:ServersComponent},  
   {path:'users',component:UsersComponent,
   canActivate:[AuthGuardService],
