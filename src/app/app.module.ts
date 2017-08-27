@@ -32,6 +32,7 @@ import {CanDeactivateGuard} from './can-deactivate-guard.service';
 import {AuthGuardService} from './auth-guard.service';
 import {AuthService} from './auth.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import {UserResolver} from './users/user-resolver.service';
 
 
 
@@ -64,7 +65,13 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [CounterService,ShoppingListService,UserService,CanDeactivateGuard,AuthGuardService,AuthService],
+  providers: [CounterService,
+  ShoppingListService,
+  UserService,
+  CanDeactivateGuard,
+  AuthGuardService,
+  AuthService,
+  UserResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

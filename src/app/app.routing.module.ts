@@ -16,6 +16,7 @@ import { NoComponentComponent } from './no-component/no-component.component';
 import {CanDeactivateGuard} from './can-deactivate-guard.service';
 import {AuthGuardService} from './auth-guard.service';
 import {ErrorPageComponent} from './error-page/error-page.component';
+import {UserResolver} from './users/user-resolver.service';
 
 const appRoutes:Routes=[
   {path:'recipes',component:RecipesComponent},
@@ -23,20 +24,26 @@ const appRoutes:Routes=[
   {path:'',component:HomeComponent},
   {path:'servers',component:ServersComponent},  
   {path:'users',component:UsersComponent,
-  //canActivate:[AuthGuardService],
+  canActivate:[AuthGuardService],
   canActivateChild:[AuthGuardService],
   children:[
     {path:':id/:name',component:UserComponent},
-    {path:':id',component:UserEditComponent,canDeactivate:[CanDeactivateGuard]}
-  ]},
-  // {path:'no-component',component:NoComponentComponent},
-  {path:'no-component',component:ErrorPageComponent,data:{message:'This is the error page..!!!'}},
+    {
+      path:':id',
+      component:UserEditComponent,
+      canDeactivate:[CanDeactivateGuard],
+      resolve:{user:UserResolver}
+    }
+  ]
+},
+  {path:'no-component',component:NoComponentComponent},
+  {path:'error',component:ErrorPageComponent,data:{message:'This is the error page..!!!'}},
   {path:'**',redirectTo:'/no-component'}
 ];
 
 @NgModule({
 imports:[
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes,{useHash:true})
 ],
 exports:[RouterModule]
 })

@@ -26,8 +26,8 @@ export class UserComponent implements OnInit,OnDestroy {
       }
     );
 
-    console.log(this.route.snapshot.queryParams);
-    console.log(this.route.snapshot.fragment);
+    // console.log(this.route.snapshot.queryParams);
+    // console.log(this.route.snapshot.fragment);
   }
 
   EditUser(id:number){
