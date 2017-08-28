@@ -19,20 +19,18 @@ import {ErrorPageComponent} from './error-page/error-page.component';
 import {UserResolver} from './users/user-resolver.service';
 import {RecipeResolver} from './recipes/recipe-resolver.service';
 import {RecipeStartComponent} from './recipes/recipe-start/recipe-start.component';
+import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
 
 const appRoutes:Routes=[
   {path:'recipes',component:RecipesComponent,
   children:[
     {path:'',component:RecipeStartComponent},
-    {
-      path:':id',
-      component:RecipeDetailComponent
-      //resolve:{recipe:RecipeResolver}
-    }
+    {path:'new',component:RecipeEditComponent},
+    {path:':id',component:RecipeDetailComponent},
+    {path:':id/edit',component:RecipeEditComponent}
   ]
 },
   {path:'shopping-list',component:ShoppingListComponent},
-  {path:'',component:RecipesComponent},
   {path:'servers',component:ServersComponent},  
   {path:'users',component:UsersComponent,
   canActivate:[AuthGuardService],
@@ -49,7 +47,8 @@ const appRoutes:Routes=[
 },
   {path:'no-component',component:NoComponentComponent},
   {path:'error',component:ErrorPageComponent,data:{message:'This is the error page..!!!'}},
-  {path:'**',redirectTo:'/no-component'}
+  {path:'',redirectTo:'/recipes',pathMatch:'full'}
+  //{path:'**',redirectTo:'/no-component'}
 ];
 
 @NgModule({

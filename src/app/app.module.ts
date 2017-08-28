@@ -34,6 +34,7 @@ import {AuthService} from './auth.service';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import {UserResolver} from './users/user-resolver.service';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
     UserEditComponent,
     NoComponentComponent,
     ErrorPageComponent,
-    RecipeStartComponent
+    RecipeStartComponent,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,
