@@ -35,6 +35,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import {UserResolver} from './users/user-resolver.service';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { RoutingHeaderComponent } from './routing-header/routing-header.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     NoComponentComponent,
     ErrorPageComponent,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    RoutingHeaderComponent
   ],
   imports: [
     BrowserModule,
