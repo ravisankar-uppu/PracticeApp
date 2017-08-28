@@ -36,6 +36,7 @@ import {UserResolver} from './users/user-resolver.service';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RoutingHeaderComponent } from './routing-header/routing-header.component';
+import { InputFormComponent } from './input-form/input-form.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { RoutingHeaderComponent } from './routing-header/routing-header.componen
     ErrorPageComponent,
     RecipeStartComponent,
     RecipeEditComponent,
-    RoutingHeaderComponent
+    RoutingHeaderComponent,
+    InputFormComponent
   ],
   imports: [
     BrowserModule,
@@ -70,13 +72,15 @@ import { RoutingHeaderComponent } from './routing-header/routing-header.componen
     HttpModule,
     AppRoutingModule
   ],
-  providers: [CounterService,
+  providers: [
+  CounterService,
   ShoppingListService,
   UserService,
   CanDeactivateGuard,
   AuthGuardService,
   AuthService,
-  UserResolver],
+  UserResolver
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
