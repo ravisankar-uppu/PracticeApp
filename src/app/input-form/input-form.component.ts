@@ -33,6 +33,7 @@ export class InputFormComponent{
     this.user.securityanswer=this.signupForm.form.value.securityanswer;
     this.user.gender=this.signupForm.form.value.gender;
     this.submitted=true;
+    this.signupForm.reset();
   }
 
   importUser(){
