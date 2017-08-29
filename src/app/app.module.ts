@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -37,6 +37,8 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RoutingHeaderComponent } from './routing-header/routing-header.component';
 import { InputFormComponent } from './input-form/input-form.component';
+import { TemplateDrivenFormAssignmentComponent } from './template-driven-form-assignment/template-driven-form-assignment.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 
 @NgModule({
@@ -64,13 +66,16 @@ import { InputFormComponent } from './input-form/input-form.component';
     RecipeStartComponent,
     RecipeEditComponent,
     RoutingHeaderComponent,
-    InputFormComponent
+    InputFormComponent,
+    TemplateDrivenFormAssignmentComponent,
+    ReactiveFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [
   CounterService,

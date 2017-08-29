@@ -7,7 +7,7 @@ import {NgForm} from '@angular/Forms';
   styleUrls: ['./input-form.component.css']
 })
 export class InputFormComponent{
-  @ViewChild('signupForm') signupForm:NgForm;
+  //@ViewChild('signupForm') signupForm:NgForm;
 
   securityDefault:string='pet';
   securityanswer:string='';
@@ -27,13 +27,13 @@ export class InputFormComponent{
  
   onSubmit(form:NgForm){
     console.log(form);
-    this.user.name=this.signupForm.form.value.userData.username;
-    this.user.email=this.signupForm.form.value.userData.email;
-    this.user.secret=this.signupForm.form.value.secret;
-    this.user.securityanswer=this.signupForm.form.value.securityanswer;
-    this.user.gender=this.signupForm.form.value.gender;
-    this.submitted=true;
-    this.signupForm.reset();
+    // this.user.name=this.signupForm.form.value.userData.username;
+    // this.user.email=this.signupForm.form.value.userData.email;
+    // this.user.secret=this.signupForm.form.value.secret;
+    // this.user.securityanswer=this.signupForm.form.value.securityanswer;
+    // this.user.gender=this.signupForm.form.value.gender;
+    // this.submitted=true;
+    // this.signupForm.reset();
   }
 
   importUser(){
@@ -47,15 +47,15 @@ export class InputFormComponent{
     //   gender:'male'
     // });
 
-    this.signupForm.form.patchValue({
-      userData:{
-        username:'Ravi',
-        email:'ravisankar426@gmail.com'
-      },
-      secret:'pet',
-      securityanswer:'mothi',
-      gender:'male'
-    });
+    // this.signupForm.form.patchValue({
+    //   userData:{
+    //     username:'Ravi',
+    //     email:'ravisankar426@gmail.com'
+    //   },
+    //   secret:'pet',
+    //   securityanswer:'mothi',
+    //   gender:'male'
+    // });
   }
 
 }

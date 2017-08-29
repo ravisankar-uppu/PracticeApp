@@ -22,6 +22,8 @@ import {RecipeStartComponent} from './recipes/recipe-start/recipe-start.componen
 import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
 import {InputFormComponent} from './input-form/input-form.component';
 import {RoutingHeaderComponent} from './routing-header/routing-header.component';
+import {TemplateDrivenFormAssignmentComponent} from './template-driven-form-assignment/template-driven-form-assignment.component';
+import {ReactiveFormComponent} from './reactive-form/reactive-form.component';
 
 const appRoutes:Routes=[
   {path:'recipes',component:RecipesComponent,
@@ -51,7 +53,9 @@ const appRoutes:Routes=[
   {path:'error',component:ErrorPageComponent,data:{message:'This is the error page..!!!'}},
   {path:'routing-header',component:RoutingHeaderComponent},
   {path:'input-form',component:InputFormComponent},
-  {path:'',redirectTo:'/input-form',pathMatch:'full'},
+  {path:'assignment-form',component:TemplateDrivenFormAssignmentComponent},
+  {path:'reactive-form',component:ReactiveFormComponent},
+  {path:'',redirectTo:'/reactive-form',pathMatch:'full'},
   //{path:'',redirectTo:'/recipes',pathMatch:'full'}
   //{path:'**',redirectTo:'/no-component'}
 ];
