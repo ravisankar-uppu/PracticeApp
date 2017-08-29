@@ -6,11 +6,12 @@
           <div class="form-group">
             <label for="username">User Name</label>
             <input type="text" id="username" class="form-control" formControlName="username"  />
+            <span *ngIf="signupForm.get('userData.username').errors!=null && signupForm.get('userData.username').errors['alreadyused']" style="color:red">This User Name is already used</span>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" class="form-control" formControlName="email" />
-            <span class="help-text" style="color:red" *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched">Please enter valid email!</span>
+            <input type="email" id="email" class="form-control" formControlName="email" email />
+            <span class="help-text" style="color:red" *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched">Please enter valid email!</span>            
           </div>
         <p class="help-text" style="color:red" *ngIf="!signupForm.get('userData').valid && signupForm.get('userData').touched">Please enter user details</p>
         </div>
@@ -21,18 +22,38 @@
             <option value="teacher">Favourite Teacher</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">Submit</button>
+        <div class="form-group radio" *ngFor="let gender of genders">
+          <label>
+            <input type="radio" class="radio" formControlName="gender" [value]="gender"> {{gender}}
+          </label>
+        </div>
+        <div formArrayName="hobbies">
+          <h4>Your Hobbies</h4>
+          <p>
+            <button type="button" class="btn btn-primary" (click)="AddHobby()">Add Hobby</button>
+          </p>
+          <div class="form-group" *ngFor="let hobby of signupForm.get('hobbies').controls; let i=index">
+              <input type="text" class="form-control" [formControlName]="i">
+              <span class="glyphicon glyphicon-remove" (click)="RemoveHobby(i)"></span>
+            <span *ngIf="!signupForm.get('hobbies').controls[i].valid && signupForm.get('hobbies').controls[i].touched" style="color:red">Hobby should not be empty..!!!</span>
+          </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">Submit</button>
+        </div>
       </form>
-      <!--<div class="row" *ngIf="submitted">
+      <div class="row" *ngIf="submitted">
         <div class="col-xs-12">
           <h3>Your Data</h3>
-            <p>User Name - {{user.name}}</p>
+            <p>User Name - {{user.username}}</p>
             <p>User Email - {{user.email}}</p>
             <p>Security Question - {{user.secret}}</p>
-            <p>Security Answer - {{user.securityanswer}}</p>
             <p>Gender - {{user.gender}}</p>
+            <p>Hobbies - 
+              <span *ngFor="let hobby of user.hobbies;let i=index">{{hobby}} <span *ngIf="i<user.hobbies.length-1">,</span> </span>
+            </p>
         </div>
-      </div>-->
+      </div>
     </div>
   </div>
 </div>
