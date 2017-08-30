@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form (ngSubmit)="onSubmit(projectForm)" [formGroup]="projectForm">
+        <div class="form-group">
+          <label for="projectName">Project Name</label>
+          <input type="text" id="projectName" class="form-control" formControlName="projectName">
+          <span 
+          *ngIf="!projectForm.get('projectName').valid && projectForm.get('projectName').touched" 
+          style="color:red">Please enter Project Name...!!!</span>
+          <span 
+          *ngIf="projectForm.get('projectName').errors!==null
+           && projectForm.get('projectName').errors['invalidProjectName']===true
+           && projectForm.get('projectName').touched" 
+          style="color:red">Project name {{projectForm.get('projectName').value}} is not allowed</span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" id="email" class="form-control" formControlName="email">
+          <span 
+          *ngIf="!projectForm.get('email').valid && projectForm.get('email').touched"
+          style="color:red">Please enter valid Email...!!!</span>
+        </div>
+        <div class="form-group">
+          <label for="projectStatus">Project Status</label>
+          <select name="projectStatuses" id="projectStatuses" class="form-control" formControlName="projectStatuses">
+            <option [value]="projectStatus" *ngFor="let projectStatus of projectStatuses">{{projectStatus}}</option>
+          </select>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" [disabled]="!projectForm.valid">Submit</button>
+        
+      </form>
+    </div>
+  </div>
+</div>

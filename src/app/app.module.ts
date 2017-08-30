@@ -39,6 +39,7 @@ import { RoutingHeaderComponent } from './routing-header/routing-header.componen
 import { InputFormComponent } from './input-form/input-form.component';
 import { TemplateDrivenFormAssignmentComponent } from './template-driven-form-assignment/template-driven-form-assignment.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { ReactiveFormAssignmentComponent } from './reactive-form-assignment/reactive-form-assignment.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
     RoutingHeaderComponent,
     InputFormComponent,
     TemplateDrivenFormAssignmentComponent,
-    ReactiveFormComponent
+    ReactiveFormComponent,
+    ReactiveFormAssignmentComponent
   ],
   imports: [
     BrowserModule,

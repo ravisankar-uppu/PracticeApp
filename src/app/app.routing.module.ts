@@ -24,6 +24,7 @@ import {InputFormComponent} from './input-form/input-form.component';
 import {RoutingHeaderComponent} from './routing-header/routing-header.component';
 import {TemplateDrivenFormAssignmentComponent} from './template-driven-form-assignment/template-driven-form-assignment.component';
 import {ReactiveFormComponent} from './reactive-form/reactive-form.component';
+import {ReactiveFormAssignmentComponent} from './reactive-form-assignment/reactive-form-assignment.component';
 
 const appRoutes:Routes=[
   {path:'recipes',component:RecipesComponent,
@@ -55,7 +56,8 @@ const appRoutes:Routes=[
   {path:'input-form',component:InputFormComponent},
   {path:'assignment-form',component:TemplateDrivenFormAssignmentComponent},
   {path:'reactive-form',component:ReactiveFormComponent},
-  {path:'',redirectTo:'/reactive-form',pathMatch:'full'},
+  {path:'reactive-form-assignment',component:ReactiveFormAssignmentComponent},
+  {path:'',redirectTo:'/reactive-form-assignment',pathMatch:'full'},
   //{path:'',redirectTo:'/recipes',pathMatch:'full'}
   //{path:'**',redirectTo:'/no-component'}
 ];
