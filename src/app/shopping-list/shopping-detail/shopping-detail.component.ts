@@ -41,9 +41,6 @@ export class ShoppingDetailComponent implements OnInit,OnDestroy {
     this.shoppingListItem=new ShoppingListItem();
     this.shoppingListItem.Name=formValues.item;
     this.shoppingListItem.Amount=formValues.amount;
-    // this.shoppingListService.addShoppingListItem(this.shoppingListItem);
-    // this.shoppingListItem.Name=this.slForm.value.item;
-    // this.shoppingListItem.Amount=this.slForm.value.amount;
     if(this.editMode){
       this.shoppingListService.updateShoppingListItem(this.editedIndex,this.shoppingListItem)
     }
@@ -55,7 +52,9 @@ export class ShoppingDetailComponent implements OnInit,OnDestroy {
   }
 
   DeleteItem(){
+    this.shoppingListService.deleteShoppingListItem(this.editedIndex);
     this.editMode=false;
+    this.slForm.reset();
   }
 
   ClearItem(form:NgForm){
