@@ -57,8 +57,8 @@ const appRoutes:Routes=[
   {path:'assignment-form',component:TemplateDrivenFormAssignmentComponent},
   {path:'reactive-form',component:ReactiveFormComponent},
   {path:'reactive-form-assignment',component:ReactiveFormAssignmentComponent},
-  {path:'',redirectTo:'/reactive-form-assignment',pathMatch:'full'},
-  //{path:'',redirectTo:'/recipes',pathMatch:'full'}
+  {path:'',redirectTo:'/recipes',pathMatch:'full'}
+  //{path:'',redirectTo:'/reactive-form-assignment',pathMatch:'full'},
   //{path:'**',redirectTo:'/no-component'}
 ];
 
