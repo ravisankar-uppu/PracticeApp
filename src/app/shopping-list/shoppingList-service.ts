@@ -34,7 +34,7 @@ export class ShoppingListService{
       this.broadCastShoppingListItems();
     }
 
-    broadCastShoppingListItems(){        
+    broadCastShoppingListItems(){  
       this.shoppingListItemsUpdated.next(this.shoppingListItems.slice());
     }
 }

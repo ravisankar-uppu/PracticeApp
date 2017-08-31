@@ -22,6 +22,8 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.id!==null)
+      this.selectedRecipe=this.recipeService.getRecipeById(this.id);
     this.route.params.subscribe((params:Params)=>{
       this.id=+params['id'];  //The "+" sign before the params keyword makes it an integer.
       this.selectedRecipe=this.recipeService.getRecipeById(this.id);

@@ -42,6 +42,12 @@ export class RecipeService{
         return this.selectedRecipe;
   }
 
-
-
+  updateRecipeDetails(recipe:Recipe){
+    for(var i=0;i<this.recipes.length;i++){
+      if(this.recipes[i].id===recipe.id){
+        this.recipes[i]=recipe;
+        break;
+      }
+    }
+  }
 }
