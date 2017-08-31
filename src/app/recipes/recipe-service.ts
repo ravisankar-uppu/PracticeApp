@@ -2,11 +2,14 @@
 import {EventEmitter} from '@angular/core';
 import { Recipe } from './recipe.model';
 import {ShoppingListItem} from '../shopping-list/shoppingList.model';
+import {Subject} from 'rxjs';
 
 
 export class RecipeService{
 
   private selectedRecipe:Recipe;
+  recipeUpdateBroadcast=new Subject<Recipe>();
+  recipesUpdateBroadcast=new Subject<Recipe[]>();
 
   private recipes: Recipe[]=[
   new Recipe(1
@@ -42,12 +45,34 @@ export class RecipeService{
         return this.selectedRecipe;
   }
 
+  addRecipe(recipe:Recipe){
+    this.recipes.push(recipe);
+    this.recipesUpdateBroadcast.next(this.recipes);
+  }
+
   updateRecipeDetails(recipe:Recipe){
     for(var i=0;i<this.recipes.length;i++){
       if(this.recipes[i].id===recipe.id){
         this.recipes[i]=recipe;
+        this.recipeUpdateBroadcast.next(this.recipes[i]);
         break;
       }
     }
   }
+
+  deleteRecipe(id:number){
+   this.recipes.splice(this.recipes.findIndex(i=>i.id==id),1);
+   this.recipesUpdateBroadcast.next(this.recipes);
+  }
+
+  deleteIngredient(recipe:Recipe,ingredientIndex:number){
+    for(var i=0;i<this.recipes.length;i++){
+      if(this.recipes[i].id===recipe.id){
+          this.recipes[i].ingredients.splice(ingredientIndex,1);
+          this.recipeUpdateBroadcast.next(this.recipes[i]);
+          break;
+      }
+    }
+  }
+
 }

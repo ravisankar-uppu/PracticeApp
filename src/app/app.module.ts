@@ -40,7 +40,7 @@ import { InputFormComponent } from './input-form/input-form.component';
 import { TemplateDrivenFormAssignmentComponent } from './template-driven-form-assignment/template-driven-form-assignment.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { ReactiveFormAssignmentComponent } from './reactive-form-assignment/reactive-form-assignment.component';
-
+import {RecipeService} from './recipes/recipe-service';
 
 @NgModule({
   declarations: [
@@ -86,7 +86,8 @@ import { ReactiveFormAssignmentComponent } from './reactive-form-assignment/reac
   CanDeactivateGuard,
   AuthGuardService,
   AuthService,
-  UserResolver
+  UserResolver,
+  RecipeService
 ],
   bootstrap: [AppComponent]
 })
