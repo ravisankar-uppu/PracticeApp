@@ -1,10 +1,11 @@
 
-import {EventEmitter} from '@angular/core';
+import {Injectable} from '@angular/core';
 import { Recipe } from './recipe.model';
 import {ShoppingListItem} from '../shopping-list/shoppingList.model';
 import {Subject} from 'rxjs';
+import {Http} from '@angular/http';
 
-
+@Injectable()
 export class RecipeService{
 
   private selectedRecipe:Recipe;
@@ -31,6 +32,10 @@ export class RecipeService{
   )
   ];
 
+  constructor(private http:Http){
+
+  }
+
   getRecipes(){
       return this.recipes.slice();
   }
@@ -48,6 +53,7 @@ export class RecipeService{
   addRecipe(recipe:Recipe){
     this.recipes.push(recipe);
     this.recipesUpdateBroadcast.next(this.recipes);
+    return this.http.post('https://practiceapp-e47f8.firebaseio.com/recipes.json',recipe);
   }
 
   updateRecipeDetails(recipe:Recipe){
