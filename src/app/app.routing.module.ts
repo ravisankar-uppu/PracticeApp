@@ -25,6 +25,7 @@ import {RoutingHeaderComponent} from './routing-header/routing-header.component'
 import {TemplateDrivenFormAssignmentComponent} from './template-driven-form-assignment/template-driven-form-assignment.component';
 import {ReactiveFormComponent} from './reactive-form/reactive-form.component';
 import {ReactiveFormAssignmentComponent} from './reactive-form-assignment/reactive-form-assignment.component';
+import {PipesComponent} from './pipes/pipes.component';
 
 const appRoutes:Routes=[
   {path:'recipes',component:RecipesComponent,
@@ -57,8 +58,9 @@ const appRoutes:Routes=[
   {path:'assignment-form',component:TemplateDrivenFormAssignmentComponent},
   {path:'reactive-form',component:ReactiveFormComponent},
   {path:'reactive-form-assignment',component:ReactiveFormAssignmentComponent},
+  {path:'pipes',component:PipesComponent},
   {path:'',redirectTo:'/recipes',pathMatch:'full'}
-  //{path:'',redirectTo:'/reactive-form-assignment',pathMatch:'full'},
+  //{path:'',redirectTo:'/pipes',pathMatch:'full'},
   //{path:'**',redirectTo:'/no-component'}
 ];
 

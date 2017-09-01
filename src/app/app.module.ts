@@ -41,6 +41,8 @@ import { TemplateDrivenFormAssignmentComponent } from './template-driven-form-as
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { ReactiveFormAssignmentComponent } from './reactive-form-assignment/reactive-form-assignment.component';
 import {RecipeService} from './recipes/recipe-service';
+import { PipesComponent } from './pipes/pipes.component';
+import { CustomPipePipe } from './custom-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import {RecipeService} from './recipes/recipe-service';
     InputFormComponent,
     TemplateDrivenFormAssignmentComponent,
     ReactiveFormComponent,
-    ReactiveFormAssignmentComponent
+    ReactiveFormAssignmentComponent,
+    PipesComponent,
+    CustomPipePipe
   ],
   imports: [
     BrowserModule,

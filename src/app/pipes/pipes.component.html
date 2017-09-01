@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="form-group">
+      <label for="filterText">Filter Input</label>
+      <input type="text" class="form-control" id="filterText" />
+    </div>
+    <p>{{inputText}}</p>
+  </div>
+</div>
+<ul>
+  <li *ngFor="let s of strings | customPipe">{{s}}</li>
+</ul>
