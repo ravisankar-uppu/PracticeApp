@@ -43,6 +43,7 @@ import { ReactiveFormAssignmentComponent } from './reactive-form-assignment/reac
 import {RecipeService} from './recipes/recipe-service';
 import { PipesComponent } from './pipes/pipes.component';
 import { CustomPipePipe } from './custom-pipe.pipe';
+import { DataLayer } from './data-layer';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { CustomPipePipe } from './custom-pipe.pipe';
   AuthGuardService,
   AuthService,
   UserResolver,
-  RecipeService
+  RecipeService,
+  DataLayer
 ],
   bootstrap: [AppComponent]
 })
