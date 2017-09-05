@@ -3,6 +3,7 @@ import { Recipe } from '../recipe.model';
 import {RecipeService} from '../recipe-service';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
+import {DataLayer} from '../../data-layer';
 
 @Component({
   selector: 'app-recipe-list',
@@ -14,20 +15,11 @@ export class RecipeListComponent implements OnInit,OnDestroy {
   recipeUpdateSubscription:Subscription;
   recipesUpdateSubscription:Subscription;
 
-  constructor(private recipeService:RecipeService,private router:Router) { }
+  constructor(private recipeService:RecipeService,private router:Router,private dataLayer:DataLayer) { }
 
   ngOnInit() { 
-    this.recipeService.getRecipes().subscribe(
-      (recipes:any[])=>{
-              this.recipes=[];        
-              var keys=Object.keys(recipes);
-              keys.forEach((key)=>{
-                this.recipes.push(recipes[key]);
-              })
-            },
-            (error)=> console.log(error)
-    );
-    
+   this.dataLayer.getRecipes();
+
     this.recipeUpdateSubscription=this.recipeService.recipeUpdateBroadcast.subscribe((recipe:Recipe)=>{
       for(var i=0;i<this.recipes.length;i++){
         if(this.recipes[i].id===recipe.id){
