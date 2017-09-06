@@ -31,4 +31,13 @@ export class DataLayer{
             }
         ); 
     }
+
+    saveData(recipes:Recipe[]){
+        this.http.put(this.common.webAPIUrl,recipes)
+        .subscribe(
+            (response:Response)=>{
+                this.getRecipes();
+            }
+        );
+    }
 }

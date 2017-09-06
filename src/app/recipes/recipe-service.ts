@@ -41,6 +41,7 @@ export class RecipeService{
 
   addRecipe(recipe:Recipe){
     var result= this.http.post(this.common.webAPIUrl,recipe);
+    recipe.id=this.getNewRecipeId();
     this.recipes.push(recipe);
     this.recipesUpdateBroadcast.next(this.recipes);
     return result;
@@ -49,7 +50,7 @@ export class RecipeService{
   updateRecipeDetails(recipe:Recipe){
     for(var i=0;i<this.recipes.length;i++){
       if(this.recipes[i].id===recipe.id){
-        this.recipes[i]=recipe;
+        this.recipes[i]=recipe;       
         this.recipeUpdateBroadcast.next(this.recipes[i]);
         break;
       }
@@ -69,6 +70,14 @@ export class RecipeService{
           break;
       }
     }
+  }
+
+  getNewRecipeId(){
+    var newRecipeId=0;
+    this.recipes.map(function(recipe){     
+      if (recipe.id > newRecipeId) newRecipeId = recipe.id;    
+  });
+    return newRecipeId+1;
   }
 
 }
