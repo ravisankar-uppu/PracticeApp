@@ -28,6 +28,7 @@ import {ReactiveFormAssignmentComponent} from './reactive-form-assignment/reacti
 import {PipesComponent} from './pipes/pipes.component';
 import {SignupComponent} from './auth/signup/signup.component';
 import {SigninComponent} from './auth/signin/signin.component';
+import {RecipeHomeComponent} from './recipe-home/recipe-home.component';
 
 const appRoutes:Routes=[
   {path:'recipes',component:RecipesComponent,
@@ -63,6 +64,7 @@ const appRoutes:Routes=[
   {path:'pipes',component:PipesComponent},
   {path:'signup',component:SignupComponent},
   {path:'signin',component:SigninComponent},
+  {path:'recipe-home',component:RecipeHomeComponent},
   //{path:'',redirectTo:'/recipes',pathMatch:'full'}
   {path:'',redirectTo:'/signin',pathMatch:'full'},
   //{path:'**',redirectTo:'/no-component'}

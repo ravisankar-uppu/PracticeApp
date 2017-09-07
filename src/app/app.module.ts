@@ -47,6 +47,7 @@ import { DataLayer } from './data-layer';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import {AuthenticationService} from './auth/auth-service';
+import { RecipeHomeComponent } from './recipe-home/recipe-home.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import {AuthenticationService} from './auth/auth-service';
     PipesComponent,
     CustomPipePipe,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    RecipeHomeComponent
   ],
   imports: [
     BrowserModule,

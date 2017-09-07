@@ -5,10 +5,10 @@
         </div>
     </div>
     <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-            <!--<li><a href="#" (click)="showPage('Recipes')">Recipes</a></li>-->
+        <ul class="nav navbar-nav" *ngIf="tokenAvailable">
+            <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/recipe-home">Home</a></li>
             <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/recipes">Recipes</a></li>
-            <li role="presentation" routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
+            <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/shopping-list">Shopping List</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li role="presentation" routerLinkActive="active"><a routerLink="/signup">Register</a></li>
@@ -17,6 +17,9 @@
             <li role="presentation" routerLinkActive="active"><a routerLink="/signin">Log In</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            <li style="cursor:pointer" (click)="signOut()"><a>Log Out</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" *ngIf="tokenAvailable">
             <li class="dropdown" appDropdown>
                 <a class="dropdown-toggle" role="button">Manage Data <span class="caret"></span></a>
                 <ul class="dropdown-menu">

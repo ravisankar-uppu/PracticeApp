@@ -2,23 +2,33 @@
 import {Http,Response} from '@angular/http';
 import {Common} from './common'
 import {Observable} from 'rxjs/Observable';
-import {Injectable} from '@angular/core';
+import {Injectable,OnDestroy} from '@angular/core';
 import {RecipeService} from './recipes/recipe-service';
 import {Recipe} from './recipes/recipe.model';
 import {AuthenticationService} from './auth/auth-service';
+import {Subscription} from 'rxjs';
 
 @Injectable()
-export class DataLayer{
+export class DataLayer implements OnDestroy{
     recipes:Recipe[]=[];
     recipe:Recipe=new Recipe();
     common:Common=new Common();
+    tokenSubscription=new Subscription();
+    token:string;
+
     constructor(private http:Http,
         private recipeService:RecipeService,
         private authService:AuthenticationService){
     }
 
     getRecipes(){
-        this.http.get(this.common.webAPIUrl+'?auth='+this.authService.getToken())
+        this.tokenSubscription=this.authService.tokenBroadcast.subscribe(token=>this.token=token);
+        if(this.token===undefined)
+            this.token=this.authService.getToken();
+        if(this.token===undefined)
+            this.token=this.authService.token;
+       
+        this.http.get(this.common.webAPIUrl+'?auth='+this.token)
         .subscribe(
             (response:Response)=>{
             this.recipes=[];
@@ -32,15 +42,19 @@ export class DataLayer{
               })
             this.recipeService.setRecipes(this.recipes.slice());
             }
-        ); 
+        );
     }
 
     saveData(recipes:Recipe[]){
-        this.http.put(this.common.webAPIUrl,recipes)
+        this.http.put(this.common.webAPIUrl+'?auth='+this.token,recipes)
         .subscribe(
             (response:Response)=>{
                 this.getRecipes();
             }
         );
+    }
+    
+    ngOnDestroy(){
+        this.tokenSubscription.unsubscribe();
     }
 }
