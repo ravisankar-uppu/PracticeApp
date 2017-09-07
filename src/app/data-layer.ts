@@ -5,17 +5,20 @@ import {Observable} from 'rxjs/Observable';
 import {Injectable} from '@angular/core';
 import {RecipeService} from './recipes/recipe-service';
 import {Recipe} from './recipes/recipe.model';
+import {AuthenticationService} from './auth/auth-service';
 
 @Injectable()
 export class DataLayer{
     recipes:Recipe[]=[];
     recipe:Recipe=new Recipe();
     common:Common=new Common();
-    constructor(private http:Http,private recipeService:RecipeService){
+    constructor(private http:Http,
+        private recipeService:RecipeService,
+        private authService:AuthenticationService){
     }
 
     getRecipes(){
-        this.http.get(this.common.webAPIUrl)
+        this.http.get(this.common.webAPIUrl+'?auth='+this.authService.getToken())
         .subscribe(
             (response:Response)=>{
             this.recipes=[];

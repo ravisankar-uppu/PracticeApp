@@ -6,6 +6,7 @@ import {Subject} from 'rxjs';
 import {Http,Response} from '@angular/http';
 import {Common} from '../common';
 import 'rxjs/Rx';
+import {AuthenticationService} from '../auth/auth-service';
 
 @Injectable()
 export class RecipeService{
@@ -17,7 +18,7 @@ export class RecipeService{
   private recipes: Recipe[]=[];
   getRecipesPromise:any;
 
-  constructor(private http:Http){
+  constructor(private http:Http,private authService:AuthenticationService){
   }
 
     setRecipes(recipes:Recipe[]){

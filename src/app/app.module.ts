@@ -44,6 +44,9 @@ import {RecipeService} from './recipes/recipe-service';
 import { PipesComponent } from './pipes/pipes.component';
 import { CustomPipePipe } from './custom-pipe.pipe';
 import { DataLayer } from './data-layer';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import {AuthenticationService} from './auth/auth-service';
 
 @NgModule({
   declarations: [
@@ -75,7 +78,9 @@ import { DataLayer } from './data-layer';
     ReactiveFormComponent,
     ReactiveFormAssignmentComponent,
     PipesComponent,
-    CustomPipePipe
+    CustomPipePipe,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +98,8 @@ import { DataLayer } from './data-layer';
   AuthService,
   UserResolver,
   RecipeService,
-  DataLayer
+  DataLayer,
+  AuthenticationService
 ],
   bootstrap: [AppComponent]
 })
