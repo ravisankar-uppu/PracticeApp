@@ -1,4 +1,4 @@
-import {Component,Output,EventEmitter,OnInit,OnDestroy} from '@angular/core';
+import {Component,OnInit,OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 import {RecipeService} from '../recipes/recipe-service';
 import {DataLayer} from '../data-layer';

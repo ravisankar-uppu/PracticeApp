@@ -66,7 +66,7 @@ export class ReactiveFormComponent implements OnInit {
       return null;
   }
 
-  checkForbiddenUserNamesAsync(control:FormControl):Promise<any> | Observable<any> {
+  checkForbiddenUserNamesAsync(control:FormControl):Promise<any> | Observable<any> | Promise<{}>{
     const promise=new Promise<any>((resolve,reject)=>{
       setTimeout(()=>{        
         if(this.forbiddenUsernames.indexOf(control.value)!==-1){
@@ -76,10 +76,7 @@ export class ReactiveFormComponent implements OnInit {
           resolve(null);
         }
       },1500);
-
-
     });
-
    return promise;
   }
 

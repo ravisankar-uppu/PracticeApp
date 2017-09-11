@@ -20,6 +20,9 @@ import { BasicHighlightDirective } from './../directives/basic-highlight-directi
 import { GamingControlComponent } from './../gaming-control/gaming-control.component';
 import { ReferenceInputComponent } from './../reference-input/reference-input.component';
 import { ExercisesRoutingModule } from './exercises-routing.module';
+import {EvenComponent} from '../even/even.component';
+import {OddComponent} from '../odd/odd.component';
+import { GameControlComponent } from './../game-control/game-control.component';
 
 
 
@@ -41,7 +44,10 @@ import { ExercisesRoutingModule } from './exercises-routing.module';
          ReactiveFormComponent,
          ReactiveFormAssignmentComponent,
          PipesComponent,
-         CustomPipePipe
+         CustomPipePipe,
+         EvenComponent,
+         OddComponent,
+         GameControlComponent
     ],
     imports:[
         CommonModule,
