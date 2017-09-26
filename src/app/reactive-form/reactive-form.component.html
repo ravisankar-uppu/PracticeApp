@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form (ngSubmit)="onSubmit(signupForm)" [formGroup]="signupForm">
-        <div id="user-data" formGroupName="userData">
+      <form (ngSubmit)="onSubmit()" [formGroup]="signupForm">
+        <div formGroupName="userData">
           <div class="form-group">
             <label for="username">User Name</label>
             <input type="text" id="username" class="form-control" formControlName="username"  />
@@ -32,10 +32,10 @@
           <p>
             <button type="button" class="btn btn-primary" (click)="AddHobby()">Add Hobby</button>
           </p>
-          <div class="form-group" *ngFor="let hobby of signupForm.get('hobbies').controls; let i=index">
+          <div class="form-group" *ngFor="let hobby of signupForm.get('hobbies')['controls']; let i=index">
               <input type="text" class="form-control" [formControlName]="i">
               <span class="glyphicon glyphicon-remove" (click)="RemoveHobby(i)"></span>
-            <span *ngIf="!signupForm.get('hobbies').controls[i].valid && signupForm.get('hobbies').controls[i].touched" style="color:red">Hobby should not be empty..!!!</span>
+            <span *ngIf="!signupForm.get('hobbies').controls[i].valid && signupForm.get('hobbies')['controls'][i].touched" style="color:red">Hobby should not be empty..!!!</span>
           </div>
         </div>
         <div class="form-group">

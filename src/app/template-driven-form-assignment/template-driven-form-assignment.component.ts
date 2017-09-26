@@ -16,7 +16,7 @@ export class TemplateDrivenFormAssignmentComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(form:NgForm){
+  onSubmit(){
     //console.log(this.templateDrivenForm);
   }
 }

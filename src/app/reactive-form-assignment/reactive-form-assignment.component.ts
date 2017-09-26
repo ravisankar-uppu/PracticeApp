@@ -35,7 +35,7 @@ export class ReactiveFormAssignmentComponent implements OnInit {
     return null;
   }
 
-  checkForbiddenProjectNamesAsync(control:FormControl):Promise<boolean> | Observable<boolean>{
+  checkForbiddenProjectNamesAsync(control:FormControl):Promise<boolean> | Observable<boolean> | Promise<{}>{
 
     const promise=new Promise((resolve,reject)=>{
       setTimeout(()=>{
