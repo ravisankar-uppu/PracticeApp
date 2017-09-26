@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import {NgForm} from '@angular/Forms';
 
 @Component({
@@ -6,13 +6,12 @@ import {NgForm} from '@angular/Forms';
   templateUrl: './template-driven-form-assignment.component.html',
   styleUrls: ['./template-driven-form-assignment.component.css']
 })
-export class TemplateDrivenFormAssignmentComponent implements OnInit {
-  //@ViewChild('f') templateDrivenForm:NgForm;
+export class TemplateDrivenFormAssignmentComponent {
+  
   subscriptionDefault='basic';
   subscriptions=['basic','advanced','pro'];
 
   constructor() { }
-
   ngOnInit() {
   }
 

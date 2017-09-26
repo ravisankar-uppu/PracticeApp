@@ -20,9 +20,11 @@ import { BasicHighlightDirective } from './../directives/basic-highlight-directi
 import { GamingControlComponent } from './../gaming-control/gaming-control.component';
 import { ReferenceInputComponent } from './../reference-input/reference-input.component';
 import { ExercisesRoutingModule } from './exercises-routing.module';
+
 import {GameControlComponent} from '../game-control/game-control.component'
 import {OddComponent} from '../odd/odd.component'
 import {EvenComponent} from '../even/even.component'
+
 
 
 @NgModule({
