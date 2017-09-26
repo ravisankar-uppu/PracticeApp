@@ -17,22 +17,22 @@ export class BasicHighlightDirective implements OnInit{
 
     ngOnInit(){
         //this.elementRef.nativeElement.style.color='Red';
-        this.renderer.setElementStyle(this.elementRef.nativeElement,'color','Black');
+        //this.renderer.setElementStyle(this.elementRef.nativeElement,'color','Black');
         this.backgroundColor=this.defaultColor;
     }
 
-     @HostListener('click') paraClick(eventDate:Event){
-        this.renderer.setElementStyle(this.elementRef.nativeElement,'color','white');
+     @HostListener('click') paraClick(){
+        //this.renderer.setElementStyle(this.elementRef.nativeElement,'color','white');
         this.backgroundColor='black';
     }
 
-    @HostListener('mouseenter') mouseenter(eventDate:Event){
-        this.renderer.setElementStyle(this.elementRef.nativeElement,'color','Red');
+    @HostListener('mouseenter') mouseenter(){
+        //this.renderer.setElementStyle(this.elementRef.nativeElement,'color','Red');
         this.backgroundColor=this.highlightColor;
     }
 
-    @HostListener('mouseleave') mouseleave(eventDate:Event){
-        this.renderer.setElementStyle(this.elementRef.nativeElement,'color','blue');
+    @HostListener('mouseleave') mouseleave(){
+        //this.renderer.setElementStyle(this.elementRef.nativeElement,'color','blue');
         this.backgroundColor=this.mouseLeaveColor;
     }
 }
