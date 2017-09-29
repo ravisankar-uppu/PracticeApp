@@ -17,3 +17,5 @@ import { DropdownDirective } from './../directives/dropdown.directive';
 export class SharedModule{
 
 }
+
+export const ADD_INGREDIENT='ADD_INGREDIENT';

@@ -2,7 +2,8 @@ export class ShoppingListItem{
     Name:string;
     Amount:number;
 
-    constructor(){
-
+    constructor(name,amount){
+        this.Name=name;
+        this.Amount=amount;
     }
 }

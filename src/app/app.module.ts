@@ -1,5 +1,6 @@
 
 
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -27,6 +28,8 @@ import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 import { CanDeactivateGuard } from './can-deactivate-guard.service';
 import { UserService } from './services/user-service';
+import {StoreModule} from '@ngrx/store';
+import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import { UserService } from './services/user-service';
     ReactiveFormsModule,
     RecipesModule,
     SharedModule,
-    ShoppingListModule
+    ShoppingListModule,
+    StoreModule.forRoot({shoppingList: shoppingListReducer})
   ],
   providers: [
   CounterService,

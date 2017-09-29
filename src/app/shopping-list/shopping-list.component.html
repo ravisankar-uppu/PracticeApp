@@ -3,8 +3,8 @@
     <app-shopping-detail></app-shopping-detail>
     <hr>
     <ul class="list-group">
-      <a class="list-group-item" 
-      *ngFor="let shoppingListItem of shoppingListItems;let i=index"
+      <a class="list-group-item"       
+      *ngFor="let shoppingListItem of (shoppingListState | async).shoppingListItems;let i=index"
       (click)="onEditItem(i)">
         <span>{{shoppingListItem.Name}} ({{shoppingListItem.Amount}})</span>
       </a>   

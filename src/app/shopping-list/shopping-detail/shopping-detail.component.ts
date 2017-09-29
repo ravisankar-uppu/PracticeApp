@@ -38,9 +38,9 @@ export class ShoppingDetailComponent implements OnInit,OnDestroy {
 
   AddItem(form:NgForm){
     var formValues=form.value;
-    this.shoppingListItem=new ShoppingListItem();
-    this.shoppingListItem.Name=formValues.item;
-    this.shoppingListItem.Amount=formValues.amount;
+    this.shoppingListItem=new ShoppingListItem(formValues.item,formValues.amount);
+    // this.shoppingListItem.Name=formValues.item;
+    // this.shoppingListItem.Amount=formValues.amount;
     if(this.editMode){
       this.shoppingListService.updateShoppingListItem(this.editedIndex,this.shoppingListItem)
     }
