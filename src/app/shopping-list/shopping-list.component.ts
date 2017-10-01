@@ -6,20 +6,21 @@ import {Store} from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import {ShoppingListItem} from './ShoppingList.model';
 import {ShoppingListService} from './shoppingList-service';
+import * as fromShoppingList from './store/shopping-list.reducer';
+import * as ShoppingListActions from './store/shopping-list.actions';
 
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css']
 })
-export class ShoppingListComponent implements OnInit,OnDestroy {
+export class ShoppingListComponent implements OnInit {
 
   shoppingListState: Observable<{shoppingListItems:ShoppingListItem[]}>;
   shoppingListItems:ShoppingListItem[];
   shoppingListItemsSubscription:Subscription;
   
-  constructor(private shoppingListService:ShoppingListService,private store:Store<{shoppingList:
-    {shoppingListItems:ShoppingListItem[]}}>) { }
+  constructor(private shoppingListService:ShoppingListService,private store:Store<fromShoppingList.AppState>) { }
 
   ngOnInit() {
      //this.shoppingListItems=this.shoppingListService.getShoppingListItems();
@@ -30,11 +31,12 @@ export class ShoppingListComponent implements OnInit,OnDestroy {
   }
 
   onEditItem(index:number){
-    this.shoppingListService.shoppingListEdited.next(index);
+    //this.shoppingListService.shoppingListEdited.next(index);
+      this.store.dispatch(new ShoppingListActions.StartEdit({index:index}));
   }
 
-  ngOnDestroy(){
-    //this.shoppingListItemsSubscription.unsubscribe();
-  }
+  // ngOnDestroy(){
+  //   //this.shoppingListItemsSubscription.unsubscribe();
+  // }
 
 }

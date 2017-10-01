@@ -16,25 +16,25 @@ export class ShoppingListService{
     
     addShoppingListItem(shoppingListItem:ShoppingListItem){
         this.shoppingListItems.push(shoppingListItem);
-        this.broadCastShoppingListItems();
+        //this.broadCastShoppingListItems();
     }
 
     addShoppingListItems(shoppingListItems:ShoppingListItem[]){
         this.shoppingListItems.push(...shoppingListItems);
-        this.broadCastShoppingListItems();
+        //this.broadCastShoppingListItems();
     }
 
     updateShoppingListItem(index:number,shoppingListItem:ShoppingListItem){
         this.shoppingListItems[index]=shoppingListItem;
-        this.broadCastShoppingListItems();
+        //this.broadCastShoppingListItems();
     }
 
     deleteShoppingListItem(index:number){
       this.shoppingListItems.splice(index,1);
-      this.broadCastShoppingListItems();
+      //this.broadCastShoppingListItems();
     }
 
-    broadCastShoppingListItems(){  
-      this.shoppingListItemsUpdated.next(this.shoppingListItems.slice());
-    }
+    // broadCastShoppingListItems(){  
+    //   this.shoppingListItemsUpdated.next(this.shoppingListItems.slice());
+    // }
 }
