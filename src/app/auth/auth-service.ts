@@ -39,7 +39,9 @@ export class AuthenticationService{
 
     signOut(){
         firebase.auth().signOut()
-        .then(response=>console.log('signed out'))
+        .then(response=>
+                this.store.dispatch(new AuthActions.SignOut())
+            )
         .catch(error=>console.log(error));
         this.tokenBroadcast.next(null);
     }

@@ -55,6 +55,7 @@ export class DataLayer implements OnDestroy{
     }
 
     saveData(recipes:Recipe[]){
+        this.authState.subscribe(authState=>this.token=authState.token);
         this.http.put(this.common.webAPIUrl+'?auth='+this.token,recipes)
         .subscribe(
             (response:Response)=>{
