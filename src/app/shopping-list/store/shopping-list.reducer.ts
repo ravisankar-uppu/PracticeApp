@@ -2,9 +2,9 @@
 import * as ShoppingListActions from './shopping-list.actions';
 import { ShoppingListItem } from './../shoppingList.model';
 
-export interface AppState{
-    shoppingList:State;
-}
+// export interface AppState{
+//     shoppingList:State;
+// }
 
 export interface State{
     shoppingListItems:ShoppingListItem[];
@@ -43,14 +43,18 @@ export function shoppingListReducer(state=initialState,action:ShoppingListAction
             ingredients[state.editedItemIndex]=updatedIngrtedient;
             return {
                 ...state,
-                shoppingListItems:ingredients
+                shoppingListItems:ingredients,
+                editedItem:null,
+                editedItemIndex:-1
             }; 
         case ShoppingListActions.DELETE_INGREDIENT:
             const oldIngredients=[...state.shoppingListItems]; 
             oldIngredients.splice(state.editedItemIndex,1);
             return{
                 ...state,
-                shoppingListItems:oldIngredients
+                shoppingListItems:oldIngredients,
+                editedItem:null,
+                editedItemIndex:-1
             };
         case ShoppingListActions.START_EDIT:
             const editedIngredient={...state.shoppingListItems[action.payload.index]}; 
@@ -58,7 +62,13 @@ export function shoppingListReducer(state=initialState,action:ShoppingListAction
                 ...state,
                 editedItem:editedIngredient,
                 editedItemIndex:action.payload.index
-            };     
+            }; 
+        case ShoppingListActions.STOP_EDIT:
+            return{
+                ...state,
+                editedItem:null,
+                editedItemIndex:-1
+            };    
         default:
             return state;
     }

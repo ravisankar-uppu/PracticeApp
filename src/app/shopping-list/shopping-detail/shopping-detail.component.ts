@@ -6,7 +6,7 @@ import {ShoppingListService} from '../shoppingList-service';
 import {NgForm} from '@angular/Forms';
 import {Subscription} from 'rxjs/Subscription';
 import * as ShoppingListActions from '../store/shopping-list.actions';
-import * as fromShoppingList from '../store/shopping-list.reducer';
+import * as fromApp from '../../store/app.reducers';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class ShoppingDetailComponent implements OnInit,OnDestroy {
   editedIndex:number;
   shoppingListEditSubscription:Subscription;
 
-  constructor(private shoppingListService:ShoppingListService,private store:Store<fromShoppingList.AppState>) { }
+  constructor(private shoppingListService:ShoppingListService,private store:Store<fromApp.AppState>) { }
 
   ngOnInit() {
 
@@ -86,6 +86,7 @@ export class ShoppingDetailComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy(){
+    this.store.dispatch(new ShoppingListActions.StopEdit());
     this.shoppingListEditSubscription.unsubscribe();
   }
 

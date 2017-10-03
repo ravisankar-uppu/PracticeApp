@@ -1,3 +1,4 @@
+import { Store } from '@ngrx/store';
 
 import {Http,Response} from '@angular/http';
 import {Common} from './common'
@@ -7,6 +8,8 @@ import {RecipeService} from './recipes/recipe-service';
 import {Recipe} from './recipes/recipe.model';
 import {AuthenticationService} from './auth/auth-service';
 import {Subscription} from 'rxjs';
+import * as fromApp from './store/app.reducers';
+import * as fromAuth from './auth/store/auth.reducer';
 
 @Injectable()
 export class DataLayer implements OnDestroy{
@@ -15,18 +18,24 @@ export class DataLayer implements OnDestroy{
     common:Common=new Common();
     tokenSubscription=new Subscription();
     token:string;
+    authState:Observable<fromAuth.State>;
 
     constructor(private http:Http,
         private recipeService:RecipeService,
-        private authService:AuthenticationService){
+        private authService:AuthenticationService,
+        private store:Store<fromApp.AppState>){
     }
 
     getRecipes(){
-        this.tokenSubscription=this.authService.tokenBroadcast.subscribe(token=>this.token=token);
-        if(this.token===undefined)
-            this.token=this.authService.getToken();
-        if(this.token===undefined)
-            this.token=this.authService.token;
+        // this.tokenSubscription=this.authService.tokenBroadcast.subscribe(token=>this.token=token);
+        this.authState=this.store.select('auth');
+
+        this.authState.subscribe(authState=>this.token=authState.token)
+        
+        // if(this.token===undefined)
+        //     this.token=this.authState;
+        // if(this.token===undefined)
+        //     this.token=this.authService.token;
        
         this.http.get(this.common.webAPIUrl+'?auth='+this.token)
         .subscribe(
@@ -55,6 +64,6 @@ export class DataLayer implements OnDestroy{
     }
     
     ngOnDestroy(){
-        this.tokenSubscription.unsubscribe();
+        //this.tokenSubscription.unsubscribe();
     }
 }

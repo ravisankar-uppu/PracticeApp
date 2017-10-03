@@ -6,8 +6,9 @@ import {Store} from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import {ShoppingListItem} from './ShoppingList.model';
 import {ShoppingListService} from './shoppingList-service';
-import * as fromShoppingList from './store/shopping-list.reducer';
+import * as fromApp from '../store/app.reducers';
 import * as ShoppingListActions from './store/shopping-list.actions';
+
 
 @Component({
   selector: 'app-shopping-list',
@@ -20,7 +21,7 @@ export class ShoppingListComponent implements OnInit {
   shoppingListItems:ShoppingListItem[];
   shoppingListItemsSubscription:Subscription;
   
-  constructor(private shoppingListService:ShoppingListService,private store:Store<fromShoppingList.AppState>) { }
+  constructor(private shoppingListService:ShoppingListService,private store:Store<fromApp.AppState>) { }
 
   ngOnInit() {
      //this.shoppingListItems=this.shoppingListService.getShoppingListItems();

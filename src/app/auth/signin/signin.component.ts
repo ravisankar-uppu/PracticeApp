@@ -1,3 +1,4 @@
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../auth-service';
 import {NgForm} from '@angular/forms';

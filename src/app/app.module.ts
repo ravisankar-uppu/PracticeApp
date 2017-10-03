@@ -29,7 +29,8 @@ import { AuthGuardService } from './auth-guard.service';
 import { CanDeactivateGuard } from './can-deactivate-guard.service';
 import { UserService } from './services/user-service';
 import {StoreModule} from '@ngrx/store';
-import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
+import { reducers } from './store/app.reducers';
+
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer
     RecipesModule,
     SharedModule,
     ShoppingListModule,
-    StoreModule.forRoot({shoppingList: shoppingListReducer})
+    StoreModule.forRoot(reducers)
   ],
   providers: [
   CounterService,
