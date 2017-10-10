@@ -1,43 +1,30 @@
 
+
 import { Store } from '@ngrx/store';
-import {Component,Output,EventEmitter,OnInit,OnDestroy} from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {RecipeService} from '../recipes/recipe-service';
-import {DataLayer} from '../data-layer';
-import {AuthenticationService} from '../auth/auth-service';
-import {Subscription} from 'rxjs';
-import * as fromApp from '../store/app.reducers';
 import * as fromAuth from '../auth/store/auth.reducer';
 import { Observable } from 'rxjs/Observable';
-import { AppState } from './../store/app.reducers';
 import * as AuthActions from '../auth/store/auth.actions';
+import * as fromRecipe from '../recipes/store/recipe.reducers';
+import * as RecipeActions from '../recipes/store/recipe.actions';
 
 @Component({
     selector:'app-header',
     templateUrl:'./header.component.html'
 })
 
-export class HeaderComponent implements OnInit,OnDestroy{
-    
-    tokenAvailable:boolean=false;
-    tokenSubscription=new Subscription();
+export class HeaderComponent implements OnInit
+{
     authState:Observable<fromAuth.State>;
+    recipeState:Observable<fromRecipe.State>;
 
     ngOnInit(){
         this.authState=this.store.select('auth');
-        // console.log('Auth State');
-        // console.log(this.authState);
-        // this.tokenSubscription=this.authService.tokenBroadcast.subscribe((token:string)=>{
-        //         this.tokenAvailable = token!=null;
-        // });
-        // console.log(this.tokenAvailable);
     }
 
     constructor(private router:Router,
-        private recipeService:RecipeService,
-        private dataLayer:DataLayer,
-        private authService:AuthenticationService,
-        private store:Store<fromApp.AppState>){
+        private store:Store<fromRecipe.FeatureState>){
 
     }
     fetchData(){
@@ -45,16 +32,10 @@ export class HeaderComponent implements OnInit,OnDestroy{
     }
 
     saveData(){
-        this.dataLayer.saveData(this.recipeService.getRecipes());
-        this.router.navigate(['recipes']);
+        this.store.dispatch(new RecipeActions.SaveRecipes());
     }
 
     signOut(){
-        this.authService.signOut();
-        this.router.navigate(['/']);
-    }
-
-    ngOnDestroy(){
-        //this.tokenSubscription.unsubscribe();
+        this.store.dispatch(new AuthActions.TrySignOut());
     }
 }

@@ -1,41 +1,26 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
+
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+
+import { Component, OnInit} from '@angular/core';
 import { Recipe } from '../recipe.model';
-import {RecipeService} from '../recipe-service';
-import {Router} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
-import {DataLayer} from '../../data-layer';
+import * as fromRecipe from '../store/recipe.reducers';
+import * as RecipeActions from '../store/recipe.actions';
+
 
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class RecipeListComponent implements OnInit,OnDestroy {
-  recipes:Recipe[];
-  recipeUpdateSubscription:Subscription;
-  recipesUpdateSubscription:Subscription;
+export class RecipeListComponent implements OnInit {
+  recipeState:Observable<fromRecipe.State>;
 
-  constructor(private recipeService:RecipeService,private router:Router,private dataLayer:DataLayer) { }
+  constructor(private store:Store<fromRecipe.FeatureState>
+  ) { }
 
   ngOnInit() { 
-   this.dataLayer.getRecipes();
-
-    this.recipeUpdateSubscription=this.recipeService.recipeUpdateBroadcast.subscribe((recipe:Recipe)=>{
-      for(var i=0;i<this.recipes.length;i++){
-        if(this.recipes[i].id===recipe.id){
-          this.recipes[i]=recipe;
-          break;
-        }
-      }
-    });
-
-    this.recipesUpdateSubscription=this.recipeService.recipesUpdateBroadcast.subscribe((recipes:Recipe[])=>{
-      this.recipes=recipes;
-    });
-  }
-  
-  ngOnDestroy(){
-    this.recipeUpdateSubscription.unsubscribe();
-    this.recipesUpdateSubscription.unsubscribe();
+    this.store.dispatch(new RecipeActions.FetchRecipes());
+    this.recipeState=this.store.select('recipes');
   }
 }

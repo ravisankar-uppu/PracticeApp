@@ -1,7 +1,9 @@
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AuthenticationService} from '../auth-service';
 import {Router} from '@angular/router';
+import * as fromApp from '../../store/app.reducers';
+import * as AuthActions from '../store/auth.actions';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private authService:AuthenticationService,private router:Router) { }
+  constructor(private store:Store<fromApp.AppState>,private router:Router) { }
 
   ngOnInit() {
   }
@@ -18,7 +20,8 @@ export class SignupComponent implements OnInit {
   onSubmit(form:NgForm){
     const email=form.value.email;
     const password=form.value.password;
-    this.authService.signUp(email,password);
-    this.router.navigate(['/signin']);
+    //this.authService.signUp(email,password);
+    this.store.dispatch(new AuthActions.TrySignUp({username:email,password:password}));
+    this.router.navigate(['/recipe-home']);
   }
 }

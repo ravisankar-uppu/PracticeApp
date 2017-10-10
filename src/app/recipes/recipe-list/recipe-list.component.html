@@ -5,12 +5,12 @@
   </div>
 </div>
 <hr>
-<div class="row" *ngIf="recipes!=null">
+<div class="row" *ngIf="(recipeState | async).recipes!=null">
   <div class="col-xs-12">
     <a class="list-group-item clearfix"
     [routerLink]="[recipe.id]"  
     routerLinkActive="active"
-    *ngFor="let recipe of recipes"
+    *ngFor="let recipe of (recipeState | async).recipes"
     >
       <div class="pull-left">
         <h4 class="list-group-item-heading">{{recipe.name}}</h4>

@@ -1,12 +1,11 @@
-import { ShoppingListItem } from './../../shopping-list/shoppingList.model';
+import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { Component, OnInit,Input  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
-import {ShoppingListService} from '../../shopping-list/shoppingList-service';
-import {ActivatedRoute,Data,Params,Router} from '@angular/router';
-import {IRecipe} from '../recipe.model';
-import {RecipeService} from '../recipe-service';
+import {ActivatedRoute,Params,Router} from '@angular/router';
 import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
+import * as fromRecipe from '../store/recipe.reducers';
+import * as RecipeActions from '../store/recipe.actions';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -15,35 +14,39 @@ import * as ShoppingListActions from '../../shopping-list/store/shopping-list.ac
 })
 export class RecipeDetailComponent implements OnInit {
   
-  selectedRecipe:Recipe;
+  recipeState:Observable<fromRecipe.State>;
   id:number;
+  selectedRecipe:Recipe;
 
-  constructor(private shoppingListService:ShoppingListService,
-  private route:ActivatedRoute,
-  private recipeService:RecipeService,
+  constructor(private route:ActivatedRoute,
   private router:Router,
-private store:Store<{shoppingList:{shoppingListItems:ShoppingListItem[]}}>) { 
+private store:Store<fromRecipe.FeatureState>) { 
     
   }
 
   ngOnInit() {
-    if(this.id!==null)
-      this.selectedRecipe=this.recipeService.getRecipeById(this.id);
     this.route.params.subscribe((params:Params)=>{
       this.id=+params['id'];  //The "+" sign before the params keyword makes it an integer.
-      this.selectedRecipe=this.recipeService.getRecipeById(this.id);
-    });
-    
-   
+      this.store.select('recipes')
+      .subscribe((recipeState:fromRecipe.State)=>{
+        recipeState.recipes.forEach((recipe:Recipe) => {
+          if(recipe.id===this.id)
+            this.selectedRecipe=recipe;
+        });
+      });
+    });   
   }
 
-  AddToShoppingList(selectedRecipe:Recipe){
-    //this.shoppingListService.addShoppingListItems(selectedRecipe.ingredients);
-    this.store.dispatch(new ShoppingListActions.AddIngredients(selectedRecipe.ingredients));
+  AddToShoppingList(){
+    const selectedRecipe=this.store.select('recipes')
+    .take(1)
+    .subscribe((recipeState:fromRecipe.State)=>{
+      this.store.dispatch(new ShoppingListActions.AddIngredients(this.selectedRecipe.ingredients));
+    });    
   }
 
   deleteRecipe(){
-    this.recipeService.deleteRecipe(this.selectedRecipe.id);
+    this.store.dispatch(new RecipeActions.DeleteRecipe(this.id));
     this.router.navigate(['/recipes']);
   }
 }

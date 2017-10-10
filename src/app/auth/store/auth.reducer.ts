@@ -1,5 +1,7 @@
 import {Action} from '@ngrx/store';
 import * as AuthActions from './auth.actions';
+import * as firebase from 'firebase';
+import {fromPromise} from 'rxjs/observable/fromPromise';
 
 export interface State{
     token:string;
@@ -7,7 +9,7 @@ export interface State{
 }
 
 const initialState:State={
-    token:null,
+    token:null, 
     authenticated:null
 };
 
