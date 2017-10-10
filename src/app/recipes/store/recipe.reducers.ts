@@ -33,12 +33,7 @@ export function RecipeReducers(state=initialState,action:RecipeActions.RecipeAct
                 recipes:[...state.recipes,newRecipe]
             };
         case RecipeActions.UPDATE_RECIPE:
-            //const recipe=state.recipes[action.payload.index];
-            // const updatedRecipe={...recipe,
-            //     ...action.payload.updatedRecipe
-            // };
-             const updatedRecipes=[...state.recipes];
-            // updatedRecipes[action.payload.index]=updatedRecipe;            
+             const updatedRecipes=[...state.recipes];          
             var i=0;
             var loop=true;
             
@@ -60,8 +55,6 @@ export function RecipeReducers(state=initialState,action:RecipeActions.RecipeAct
                     oldRecipes.push(recipe);
                 }
             });
-            //oldRecipes.splice(action.payload,1);
-            console.log(oldRecipes);
             return{
                 ...state,
                 recipes:oldRecipes
