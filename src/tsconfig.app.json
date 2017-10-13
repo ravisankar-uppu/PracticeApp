@@ -1,0 +1,14 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+      "outDir": "../out-tsc/app",
+      "baseUrl": "./",
+      // Set the module format to "commonjs":
+      "module": "es6",
+      "types": []
+    },
+    "exclude": [
+      "test.ts",
+      "**/*.spec.ts"
+    ]
+}

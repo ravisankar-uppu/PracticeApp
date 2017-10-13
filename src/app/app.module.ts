@@ -45,7 +45,7 @@ import {environment} from '../environments/environment';
     SigninComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId:'practice-app'}),
     FormsModule,
     HttpModule,
     AppRoutingModule,
